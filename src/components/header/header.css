@@ -1,0 +1,18 @@
+header {
+	display: grid;
+	grid-template-columns: 10px 40px 1fr 50px 50px 50px 10px;
+	height: 40px;
+
+}
+.title {
+	-webkit-app-region:drag;
+cursor: grab;
+}
+
+.win-btn {
+cursor: pointer;
+}
+.icon {
+	/* background-image: url('./../../../icon.png'); */
+	background-size: contain;
+}

@@ -1,0 +1,79 @@
+{
+  "name": "med-app",
+  "version": "0.1.0",
+  "private": true,
+  "author": "John Doe",
+  "description": "My fantastic Electron app",
+  "main": "public/electron.js",
+  "homepage": "./",
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^13.0.0",
+    "@testing-library/user-event": "^13.2.1",
+    "electron-is-dev": "^2.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "sqlite3": "^5.1.1",
+    "web-vitals": "^2.1.0"
+  },
+  "scripts": {
+    "postinstall": "electron-builder install-app-deps",
+    "start-electron": "nodemon --watch ./public/* --exec \"electron .\"",
+    "start-react": "react-scripts start",
+    "build-react": "react-scripts build",
+    "dev": "concurrently \"yarn start-react\" \"wait-on http:localhost:3000\" \"yarn start-electron\" ",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "electron-pack": "build --em.main=build/electron.js",
+    "pack-app": "yarn build-react && electron-builder --dir",
+    "pack-build": "electron-builder --dir",
+    "build": "yarn build-react && electron-builder",
+    "rebuild-sqlite3": "electron-rebuild -f -w sqlite3"
+  },
+  "build": {
+    "appId": "med-app",
+    "productName": "med-app",
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "build"
+    }
+  },
+  "extraResources": [
+    {
+      "from": "./db/",
+      "to": "db/",
+      "filter": [
+        "**/*"
+      ]
+    }
+  ],
+  "win": {
+    "icon": "./build/images/icon.png",
+    "target": [
+      "7z"
+    ]
+  },
+  "devDependencies": {
+    "concurrently": "^7.4.0",
+    "electron": "^20.1.4",
+    "electron-builder": "^23.3.3",
+    "nodemon": "^2.0.20",
+    "wait-on": "^6.0.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
