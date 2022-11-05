@@ -1,10 +1,12 @@
 import React from 'react';
 import {Container} from "@mui/system";
+import StickyHeadTable from "./StickyHeadTable";
 
 const FirstReport = () => {
     return (
-        <Container maxWidth="xl">
+        <Container maxWidth="xxl">
             <h1>УКМП</h1>
+            <StickyHeadTable/>
         </Container>
     );
 };
