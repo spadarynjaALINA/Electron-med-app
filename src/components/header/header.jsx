@@ -19,6 +19,7 @@ export default function Header()
 				<div className="btn-max win-btn">	</div>
 				<div className="btn-close win-btn" onClick={close}>	</div>
 				<div className="sp"></div>
-			</header></>
+			</header>
+		</>
 	)
 }

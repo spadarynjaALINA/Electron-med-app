@@ -7,8 +7,8 @@ let mainWindow;
 // Initializing the Electron Window
 const createWindow = () => {
   mainWindow = new BrowserWindow({
-    width: 600,
-    height: 600,
+    width: 1000,
+    height: 800,
     webPreferences: {
       preload: isDev
         ? path.join(app.getAppPath(), './public/preload.js')
