@@ -4,6 +4,7 @@ const path = require('path');
 const { db } =isDev? require('./../db'):require('db')
 let mainWindow;
 
+
 // Initializing the Electron Window
 const createWindow = () => {
   mainWindow = new BrowserWindow({
@@ -97,3 +98,20 @@ ipcMain.handle('getAllNames', async (event,args)=>{
 //         event.reply('asynchronous-reply', (err && err.message) || rows);
 //     });
 // });
+ipcMain.on('getall', () => {
+     db.get(`SELECT  FirstName name from Doctors`, (err, rows) => {
+      console.log(rows,'<=-----rows')
+
+    });
+});
+
+
+ db.get(`SELECT  * from Doctors`, (err, rows) => {
+ ipcMain.handle('message', async (e,msg) => {
+  console.log(msg + " recieved");
+      console.log(rows,'<=-----rows')
+ return rows;
+    })
+
+
+})

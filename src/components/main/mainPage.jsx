@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState, useRef} from "react";
+// import promiseIpc from 'electron-promise-ipc';
 
 export default function Main (){
-
 const [message, setMessage]=useState('')
 const [response, setResponse] = useState('');
 const input = useRef()
@@ -10,10 +10,24 @@ console.log(window.api, window)
 const sendData = async(e) => {
 	e.preventDefault();
 
-const info = await window.api.getName({LastName:e.target.value})
-setResponse(info)
-console.log('a',response, info)
+
+
 }
+useEffect(()=>{
+	const getDbData=async ()=>{
+		console.log(window.api)
+		const mes = "message from mainPage";
+ window.api.sendMessage(mes).then(data=>{
+    console.log(data);
+				setResponse(data)
+});
+	 // await window.api.getSmth().then(data=>	)
+
+
+console.log('a',response)
+};getDbData()
+},
+[message])
 return (
 	<>
 	<input type="text" id="name" value={message} ref={input}

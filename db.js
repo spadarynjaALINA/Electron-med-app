@@ -17,6 +17,11 @@ const db = new sqlite3.Database(
   }
 );
 
-
+exports.getNames=()=>{
+    db.get(`SELECT  FirstName name from Doctors`,(err,data)=>{
+   console.log('data=>',data,'err=>',err, "arg=>",args)
+   return data.name
+})
+}
 
 module.exports = { db }
